@@ -1,5 +1,6 @@
 package br.com.senai.controller;
 
+import br.com.senai.dto.PessoaDTO;
 import br.com.senai.model.Pessoa;
 import br.com.senai.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,5 +46,10 @@ public class PessoaController {
     @DeleteMapping("/{pessoaId}")
     public void excluirPessoa(@PathVariable Long pessoaId){
         pessoaService.excluirPessoa(pessoaId);
+    }
+
+    @GetMapping("/nome-idade")
+    public List<PessoaDTO> listPessoaNomeIdade(){
+        return pessoaService.listarPessoaNomeIdade();
     }
 }

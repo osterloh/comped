@@ -1,10 +1,12 @@
 package br.com.senai.service;
 
+import br.com.senai.dto.PessoaDTO;
 import br.com.senai.model.Pessoa;
 import br.com.senai.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -42,4 +44,15 @@ public class PessoaService {
         pessoaRepository.deleteById(id);
     }
 
+    public List<PessoaDTO> listarPessoaNomeIdade() {
+        List<Pessoa> pessoas = pessoaRepository.findPessoaNomeIdade();
+        List<PessoaDTO> pessoaDTOList = new ArrayList<>();
+        for(Pessoa pessoa : pessoas){
+            PessoaDTO pessoaDTO = new PessoaDTO();
+            pessoaDTO.setNome(pessoa.getNome());
+            pessoaDTO.setIdade(pessoa.getIdade());
+            pessoaDTOList.add(pessoaDTO);
+        }
+        return pessoaDTOList;
+    }
 }
