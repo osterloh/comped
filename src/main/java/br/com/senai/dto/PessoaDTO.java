@@ -9,4 +9,9 @@ public class PessoaDTO {
 
     private String nome;
     private int idade;
+
+    public PessoaDTO(String nome, int idade) {
+        this.nome = nome;
+        this.idade = idade;
+    }
 }

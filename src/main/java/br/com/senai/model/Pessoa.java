@@ -21,4 +21,8 @@ public class Pessoa {
     private String cpf;
     private int idade;
 
+    public Pessoa(String nome, int idade) {
+        this.nome = nome;
+        this.idade = idade;
+    }
 }

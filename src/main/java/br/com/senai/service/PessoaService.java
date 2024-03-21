@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PessoaService {
@@ -45,14 +46,12 @@ public class PessoaService {
     }
 
     public List<PessoaDTO> listarPessoaNomeIdade() {
-        List<Pessoa> pessoas = pessoaRepository.findPessoaNomeIdade();
-        List<PessoaDTO> pessoaDTOList = new ArrayList<>();
-        for(Pessoa pessoa : pessoas){
-            PessoaDTO pessoaDTO = new PessoaDTO();
-            pessoaDTO.setNome(pessoa.getNome());
-            pessoaDTO.setIdade(pessoa.getIdade());
-            pessoaDTOList.add(pessoaDTO);
-        }
-        return pessoaDTOList;
+        List<Pessoa> pessoas = pessoaRepository.listPessoaNomeIdade();
+
+        List<PessoaDTO> pessoaDTOs = pessoas.stream()
+                .map(pessoa -> new PessoaDTO(pessoa.getNome(), pessoa.getIdade()))
+                .collect(Collectors.toList());
+
+        return pessoaDTOs;
     }
 }

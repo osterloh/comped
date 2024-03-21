@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface PessoaRepository extends JpaRepository<Pessoa, Long> {
 
-    @Query("SELECT p FROM Pessoa p;")
-    List<Pessoa> findPessoaNomeIdade();
+    @Query(value = "SELECT new br.com.senai.model.Pessoa(p.nome, p.idade) FROM Pessoa p")
+    List<Pessoa> listPessoaNomeIdade();
 }
