@@ -1,10 +1,8 @@
 package br.com.senai.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.context.annotation.Lazy;
 
 @Getter
 @Setter
@@ -20,6 +18,9 @@ public class Pessoa {
     private String nome;
     private String cpf;
     private int idade;
+
+    @ManyToOne
+    private Endereco endereco;
 
     public Pessoa(String nome, int idade) {
         this.nome = nome;
