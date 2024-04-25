@@ -1,1 +1,1 @@
-alter table pessoa add column endereco_id bigint default 1;
+alter table pessoa add column endereco_id int default 1;
