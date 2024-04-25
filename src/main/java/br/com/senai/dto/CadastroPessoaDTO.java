@@ -9,8 +9,10 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PessoaDTO {
+public class CadastroPessoaDTO {
 
     private String nome;
+    private String cpf;
     private int idade;
+    private Long enderecoId;
 }

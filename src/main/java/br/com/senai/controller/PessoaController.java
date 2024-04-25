@@ -1,5 +1,6 @@
 package br.com.senai.controller;
 
+import br.com.senai.dto.CadastroPessoaDTO;
 import br.com.senai.dto.PessoaDTO;
 import br.com.senai.model.Pessoa;
 import br.com.senai.service.PessoaService;
@@ -28,7 +29,7 @@ public class PessoaController {
     }
 
     @PostMapping
-    public Pessoa cadastrarPessoa(@RequestBody Pessoa pessoa) {
+    public Pessoa cadastrarPessoa(@RequestBody CadastroPessoaDTO pessoa) {
         return pessoaService.cadastrarPessoa(pessoa);
     }
 
@@ -51,4 +52,6 @@ public class PessoaController {
     public List<PessoaDTO> listPessoaNomeIdade() {
         return pessoaService.listarPessoaNomeIdade();
     }
+
+//    http://localhost:8585/swagger-ui/index.html
 }

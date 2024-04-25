@@ -1,5 +1,6 @@
 package br.com.senai.model;
 
+import br.com.senai.dto.CadastroPessoaDTO;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.context.annotation.Lazy;
@@ -9,6 +10,7 @@ import org.springframework.context.annotation.Lazy;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Builder
 public class Pessoa {
 
     @Id
@@ -26,4 +28,5 @@ public class Pessoa {
         this.nome = nome;
         this.idade = idade;
     }
+
 }

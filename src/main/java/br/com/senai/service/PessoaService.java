@@ -1,8 +1,12 @@
 package br.com.senai.service;
 
+import br.com.senai.dto.CadastroPessoaDTO;
 import br.com.senai.dto.PessoaDTO;
+import br.com.senai.model.Endereco;
 import br.com.senai.model.Pessoa;
+import br.com.senai.repository.EnderecoRepository;
 import br.com.senai.repository.PessoaRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +19,8 @@ public class PessoaService {
 
     @Autowired
     PessoaRepository pessoaRepository;
+    @Autowired
+    EnderecoRepository enderecoRepository;
 
     public List<Pessoa> listarPessoas(){
         return pessoaRepository.findAll();
@@ -24,7 +30,17 @@ public class PessoaService {
         return pessoaRepository.findById(id).orElse(null);
     }
 
-    public Pessoa cadastrarPessoa(Pessoa pessoa){
+    public Pessoa cadastrarPessoa(CadastroPessoaDTO pessoaDTO){
+        Endereco endereco = enderecoRepository.findById(pessoaDTO.getEnderecoId()).orElse(null);
+        Pessoa pessoa = new Pessoa();
+//        Pessoa pessoa = Pessoa.builder()
+//                .nome(pessoaDTO.getNome())
+//                .idade(pessoaDTO.getIdade())
+//                .cpf(pessoaDTO.getCpf())
+//                .endereco(endereco)
+//                .build();
+        BeanUtils.copyProperties(pessoaDTO, pessoa);
+        pessoa.setEndereco(endereco);
         return pessoaRepository.save(pessoa);
     }
 
