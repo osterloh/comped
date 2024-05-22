@@ -23,4 +23,5 @@ public class Endereco {
     private String pais;
     private String uf;
     private String cidade;
+    private String rua;
 }
